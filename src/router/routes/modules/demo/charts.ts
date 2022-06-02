@@ -2,7 +2,7 @@
  * @Author: Zack
  * @Date: 2022-02-16 11:55:33
  * @LastEditors: Zack
- * @LastEditTime: 2022-06-02 10:04:37
+ * @LastEditTime: 2022-06-02 14:52:17
  * @Description: file content
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -20,31 +20,6 @@ const charts: AppRouteModule = {
     title: '图表',
   },
   children: [
-    {
-      path: 'baiduMap',
-      name: 'BaiduMap',
-      meta: {
-        title: '百度地图',
-      },
-      component: () => import('/@/views/demo/charts/map/Baidu.vue'),
-    },
-    {
-      path: 'aMap',
-      name: 'AMap',
-      meta: {
-        title: '高德地图',
-      },
-      component: () => import('/@/views/demo/charts/map/Gaode.vue'),
-    },
-    {
-      path: 'googleMap',
-      name: 'GoogleMap',
-      meta: {
-        title: '谷歌地图',
-      },
-      component: () => import('/@/views/demo/charts/map/Google.vue'),
-    },
-
     {
       path: 'echarts',
       name: 'Echarts',

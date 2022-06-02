@@ -264,14 +264,6 @@ const comp: AppRouteModule = {
         title: '动画组件',
       },
     },
-    {
-      path: 'cropper',
-      name: 'CropperDemo',
-      component: () => import('/@/views/demo/comp/cropper/index.vue'),
-      meta: {
-        title: '图片裁剪',
-      },
-    },
 
     {
       path: 'timestamp',
@@ -487,43 +479,6 @@ const comp: AppRouteModule = {
           },
         },
       ],
-    },
-    {
-      path: 'verify',
-      name: 'VerifyDemo',
-      component: getParentLayout('VerifyDemo'),
-      redirect: '/comp/verify/drag',
-      meta: {
-        title: '验证组件',
-      },
-      children: [
-        {
-          path: 'drag',
-          name: 'VerifyDragDemo',
-          component: () => import('/@/views/demo/comp/verify/index.vue'),
-          meta: {
-            title: '拖拽校验',
-          },
-        },
-        {
-          path: 'rotate',
-          name: 'VerifyRotateDemo',
-          component: () => import('/@/views/demo/comp/verify/Rotate.vue'),
-          meta: {
-            title: '图片还原',
-          },
-        },
-      ],
-    },
-    //
-
-    {
-      path: 'qrcode',
-      name: 'QrCodeDemo',
-      component: () => import('/@/views/demo/comp/qrcode/index.vue'),
-      meta: {
-        title: '二维码组件',
-      },
     },
     {
       path: 'strength-meter',

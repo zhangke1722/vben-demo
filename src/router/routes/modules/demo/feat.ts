@@ -31,15 +31,6 @@ const feat: AppRouteModule = {
       },
     },
     {
-      path: 'request',
-      name: 'RequestDemo',
-      // @ts-ignore
-      component: () => import('/@/views/demo/feat/request-demo/index.vue'),
-      meta: {
-        title: '测试请求重试',
-      },
-    },
-    {
       path: 'session-timeout',
       name: 'SessionTimeout',
       component: () => import('/@/views/demo/feat/session-timeout/index.vue'),
@@ -188,14 +179,6 @@ const feat: AppRouteModule = {
       },
     },
     {
-      path: 'ripple',
-      name: 'RippleDemo',
-      component: () => import('/@/views/demo/feat/ripple/index.vue'),
-      meta: {
-        title: '水波纹',
-      },
-    },
-    {
       path: 'full-screen',
       name: 'FullScreenDemo',
       component: () => import('/@/views/demo/feat/full-screen/index.vue'),
@@ -210,51 +193,6 @@ const feat: AppRouteModule = {
       meta: {
         title: '错误日志',
       },
-    },
-    {
-      path: 'excel',
-      name: 'Excel',
-      redirect: '/feat/excel/customExport',
-      component: getParentLayout('Excel'),
-      meta: {
-        // icon: 'mdi:microsoft-excel',
-        title: 'Excel',
-      },
-
-      children: [
-        {
-          path: 'customExport',
-          name: 'CustomExport',
-          component: () => import('/@/views/demo/excel/CustomExport.vue'),
-          meta: {
-            title: '选择导出格式',
-          },
-        },
-        {
-          path: 'jsonExport',
-          name: 'JsonExport',
-          component: () => import('/@/views/demo/excel/JsonExport.vue'),
-          meta: {
-            title: 'JSON数据导出',
-          },
-        },
-        {
-          path: 'arrayExport',
-          name: 'ArrayExport',
-          component: () => import('/@/views/demo/excel/ArrayExport.vue'),
-          meta: {
-            title: 'Array数据导出',
-          },
-        },
-        {
-          path: 'importExcel',
-          name: 'ImportExcel',
-          component: () => import('/@/views/demo/excel/ImportExcel.vue'),
-          meta: {
-            title: '导入',
-          },
-        },
-      ],
     },
     {
       path: 'testTab/:id',

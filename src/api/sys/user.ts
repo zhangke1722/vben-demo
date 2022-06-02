@@ -1,3 +1,10 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-02 11:49:07
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 15:39:23
+ * @Description: file content
+ */
 import { defHttp } from '/@/utils/http/axios';
 import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel';
 
@@ -8,7 +15,6 @@ enum Api {
   Logout = '/logout',
   GetUserInfo = '/getUserInfo',
   GetPermCode = '/getPermCode',
-  TestRetry = '/testRetry',
 }
 
 /**
@@ -39,17 +45,4 @@ export function getPermCode() {
 
 export function doLogout() {
   return defHttp.get({ url: Api.Logout });
-}
-
-export function testRetry() {
-  return defHttp.get(
-    { url: Api.TestRetry },
-    {
-      retryRequest: {
-        isOpenRetry: true,
-        count: 5,
-        waitTime: 1000,
-      },
-    },
-  );
 }
