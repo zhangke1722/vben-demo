@@ -1,9 +1,15 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-01 14:21:12
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 10:03:40
+ * @Description: file content
+ */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
-import { t } from '/@/hooks/web/useI18n';
 
-const dashboard: AppRouteModule = {
+const about: AppRouteModule = {
   path: '/about',
   name: 'About',
   component: LAYOUT,
@@ -11,7 +17,7 @@ const dashboard: AppRouteModule = {
   meta: {
     hideChildrenInMenu: true,
     icon: 'simple-icons:about-dot-me',
-    title: t('routes.dashboard.about'),
+    title: '关于',
     orderNo: 100000,
   },
   children: [
@@ -20,7 +26,7 @@ const dashboard: AppRouteModule = {
       name: 'AboutPage',
       component: () => import('/@/views/sys/about/index.vue'),
       meta: {
-        title: t('routes.dashboard.about'),
+        title: '关于',
         icon: 'simple-icons:about-dot-me',
         hideMenu: true,
       },
@@ -28,4 +34,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default about;

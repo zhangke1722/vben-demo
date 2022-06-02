@@ -1,10 +1,3 @@
-/*
- * @Author: Zack
- * @Date: 2021-11-05 16:17:10
- * @LastEditors: Zack
- * @LastEditTime: 2021-11-08 10:56:16
- * @Description: file content
- */
 /**
  * @description: Login interface parameters
  */

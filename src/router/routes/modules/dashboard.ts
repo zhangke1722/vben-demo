@@ -1,7 +1,13 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:33
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-01 18:07:31
+ * @Description: file content
+ */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
-import { t } from '/@/hooks/web/useI18n';
 
 const dashboard: AppRouteModule = {
   path: '/dashboard',
@@ -11,7 +17,7 @@ const dashboard: AppRouteModule = {
   meta: {
     orderNo: 10,
     icon: 'ion:grid-outline',
-    title: t('routes.dashboard.dashboard'),
+    title: 'Dashboard',
   },
   children: [
     {
@@ -20,7 +26,7 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/dashboard/analysis/index.vue'),
       meta: {
         // affix: true,
-        title: t('routes.dashboard.analysis'),
+        title: '分析页',
       },
     },
     {
@@ -28,7 +34,7 @@ const dashboard: AppRouteModule = {
       name: 'Workbench',
       component: () => import('/@/views/dashboard/workbench/index.vue'),
       meta: {
-        title: t('routes.dashboard.workbench'),
+        title: '工作台',
       },
     },
   ],

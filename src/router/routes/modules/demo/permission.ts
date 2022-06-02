@@ -1,8 +1,14 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:33
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-01 18:19:18
+ * @Description: file content
+ */
 import type { AppRouteModule } from '/@/router/types';
 
 import { getParentLayout, LAYOUT } from '/@/router/constant';
 import { RoleEnum } from '/@/enums/roleEnum';
-import { t } from '/@/hooks/web/useI18n';
 
 const permission: AppRouteModule = {
   path: '/permission',
@@ -12,7 +18,7 @@ const permission: AppRouteModule = {
   meta: {
     orderNo: 15,
     icon: 'ion:key-outline',
-    title: t('routes.demo.permission.permission'),
+    title: '权限管理',
   },
 
   children: [
@@ -21,7 +27,7 @@ const permission: AppRouteModule = {
       name: 'PermissionFrontDemo',
       component: getParentLayout('PermissionFrontDemo'),
       meta: {
-        title: t('routes.demo.permission.front'),
+        title: '基于前端权限',
       },
       children: [
         {
@@ -29,7 +35,7 @@ const permission: AppRouteModule = {
           name: 'FrontPageAuth',
           component: () => import('/@/views/demo/permission/front/index.vue'),
           meta: {
-            title: t('routes.demo.permission.frontPage'),
+            title: '页面权限',
           },
         },
         {
@@ -37,7 +43,7 @@ const permission: AppRouteModule = {
           name: 'FrontBtnAuth',
           component: () => import('/@/views/demo/permission/front/Btn.vue'),
           meta: {
-            title: t('routes.demo.permission.frontBtn'),
+            title: '按钮权限',
           },
         },
         {
@@ -45,7 +51,7 @@ const permission: AppRouteModule = {
           name: 'FrontAuthPageA',
           component: () => import('/@/views/demo/permission/front/AuthPageA.vue'),
           meta: {
-            title: t('routes.demo.permission.frontTestA'),
+            title: '权限测试页A',
             roles: [RoleEnum.SUPER],
           },
         },
@@ -54,7 +60,7 @@ const permission: AppRouteModule = {
           name: 'FrontAuthPageB',
           component: () => import('/@/views/demo/permission/front/AuthPageB.vue'),
           meta: {
-            title: t('routes.demo.permission.frontTestB'),
+            title: '权限测试页B',
             roles: [RoleEnum.TEST],
           },
         },
@@ -65,7 +71,7 @@ const permission: AppRouteModule = {
       name: 'PermissionBackDemo',
       component: getParentLayout('PermissionBackDemo'),
       meta: {
-        title: t('routes.demo.permission.back'),
+        title: '基于后台权限',
       },
       children: [
         {
@@ -73,7 +79,7 @@ const permission: AppRouteModule = {
           name: 'BackAuthPage',
           component: () => import('/@/views/demo/permission/back/index.vue'),
           meta: {
-            title: t('routes.demo.permission.backPage'),
+            title: '基于页面权限',
           },
         },
         {
@@ -81,7 +87,7 @@ const permission: AppRouteModule = {
           name: 'BackAuthBtn',
           component: () => import('/@/views/demo/permission/back/Btn.vue'),
           meta: {
-            title: t('routes.demo.permission.backBtn'),
+            title: '按钮权限',
           },
         },
       ],

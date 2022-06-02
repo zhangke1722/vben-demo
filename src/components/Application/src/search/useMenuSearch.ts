@@ -6,7 +6,6 @@ import { filter, forEach } from '/@/utils/helper/treeHelper';
 import { useGo } from '/@/hooks/web/usePage';
 import { useScrollTo } from '/@/hooks/event/useScrollTo';
 import { onKeyStroke, useDebounceFn } from '@vueuse/core';
-import { useI18n } from '/@/hooks/web/useI18n';
 
 export interface SearchResult {
   name: string;
@@ -33,7 +32,6 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
 
   let menuList: Menu[] = [];
 
-  const { t } = useI18n();
   const go = useGo();
   const handleSearch = useDebounceFn(search, 200);
 
@@ -41,7 +39,7 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     const list = await getMenus();
     menuList = cloneDeep(list);
     forEach(menuList, (item) => {
-      item.name = t(item.name);
+      item.name = item.name;
     });
   });
 

@@ -1,20 +1,18 @@
 import type { ValidationRule } from 'ant-design-vue/lib/form/Form';
 import type { ComponentType } from './types/index';
-import { useI18n } from '/@/hooks/web/useI18n';
+
 import { dateUtil } from '/@/utils/dateUtil';
 import { isNumber, isObject } from '/@/utils/is';
-
-const { t } = useI18n();
 
 /**
  * @description: 生成placeholder
  */
 export function createPlaceholderMessage(component: ComponentType) {
   if (component.includes('Input') || component.includes('Complete')) {
-    return t('common.inputText');
+    return '请输入';
   }
   if (component.includes('Picker')) {
-    return t('common.chooseText');
+    return '请选择';
   }
   if (
     component.includes('Select') ||
@@ -24,7 +22,7 @@ export function createPlaceholderMessage(component: ComponentType) {
     component.includes('Switch')
   ) {
     // return `请选择${label}`;
-    return t('common.chooseText');
+    return '请选择';
   }
   return '';
 }
@@ -70,3 +68,5 @@ export function handleInputNumberValue(component?: ComponentType, val?: any) {
  * 时间字段
  */
 export const dateItemType = genType();
+
+export const defaultValueComponents = ['Input', 'InputPassword', 'InputSearch', 'InputTextArea'];

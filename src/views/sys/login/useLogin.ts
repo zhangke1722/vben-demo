@@ -1,7 +1,6 @@
 import type { ValidationRule } from 'ant-design-vue/lib/form/Form';
 import type { RuleObject } from 'ant-design-vue/lib/form/interface';
 import { ref, computed, unref, Ref } from 'vue';
-import { useI18n } from '/@/hooks/web/useI18n';
 
 export enum LoginStateEnum {
   LOGIN,
@@ -38,38 +37,23 @@ export function useFormValid<T extends Object = any>(formRef: Ref<any>) {
   return { validForm };
 }
 
-export function randomString(receive) {
-  const type = receive.type;
-  const length = receive.length;
-  const chars =
-    type === 'number' ? '0123456789' : '0ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz123456789';
-  const maxPos = chars.length;
-  let string = '';
-  for (let i = 0; i < length; i++) {
-    string += chars.charAt(Math.floor(Math.random() * maxPos));
-  }
-  return string;
-}
-
 export function useFormRules(formData?: Recordable) {
-  const { t } = useI18n();
-
-  const getAccountFormRule = computed(() => createRule(t('sys.login.accountPlaceholder')));
-  const getPasswordFormRule = computed(() => createRule(t('sys.login.passwordPlaceholder')));
-  const getSmsFormRule = computed(() => createRule(t('sys.login.smsPlaceholder')));
-  const getMobileFormRule = computed(() => createRule(t('sys.login.mobilePlaceholder')));
+  const getAccountFormRule = computed(() => createRule('请输入账号'));
+  const getPasswordFormRule = computed(() => createRule('请输入密码'));
+  const getSmsFormRule = computed(() => createRule('请输入验证码'));
+  const getMobileFormRule = computed(() => createRule('请输入手机号码'));
 
   const validatePolicy = async (_: RuleObject, value: boolean) => {
-    return !value ? Promise.reject(t('sys.login.policyPlaceholder')) : Promise.resolve();
+    return !value ? Promise.reject('勾选后才能注册') : Promise.resolve();
   };
 
   const validateConfirmPassword = (password: string) => {
     return async (_: RuleObject, value: string) => {
       if (!value) {
-        return Promise.reject(t('sys.login.passwordPlaceholder'));
+        return Promise.reject('请输入密码');
       }
       if (value !== password) {
-        return Promise.reject(t('sys.login.diffPwd'));
+        return Promise.reject('两次输入密码不一致');
       }
       return Promise.resolve();
     };

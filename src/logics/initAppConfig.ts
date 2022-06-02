@@ -1,3 +1,10 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:32
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 10:46:54
+ * @Description: file content
+ */
 /**
  * Application configuration
  */
@@ -13,7 +20,6 @@ import { updateDarkTheme } from '/@/logics/theme/dark';
 import { changeTheme } from '/@/logics/theme';
 
 import { useAppStore } from '/@/store/modules/app';
-import { useLocaleStore } from '/@/store/modules/locale';
 
 import { getCommonStoragePrefix, getStorageShortName } from '/@/utils/env';
 
@@ -24,7 +30,6 @@ import { ThemeEnum } from '/@/enums/appEnum';
 
 // Initial project configuration
 export function initAppConfigStore() {
-  const localeStore = useLocaleStore();
   const appStore = useAppStore();
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig;
   projCfg = deepMerge(projectSetting, projCfg || {});
@@ -58,8 +63,6 @@ export function initAppConfigStore() {
     headerBgColor && updateHeaderBgColor(headerBgColor);
     bgColor && updateSidebarBgColor(bgColor);
   }
-  // init store
-  localeStore.initLocale();
 
   setTimeout(() => {
     clearObsoleteStorage();

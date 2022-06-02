@@ -1,10 +1,16 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-01 14:21:12
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-01 18:08:21
+ * @Description: file content
+ */
 import type { AppRouteRecordRaw, AppRouteModule } from '/@/router/types';
 
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '/@/router/routes/basic';
 
 import { mainOutRoutes } from './mainOut';
 import { PageEnum } from '/@/enums/pageEnum';
-import { t } from '/@/hooks/web/useI18n';
 
 const modules = import.meta.globEager('./modules/**/*.ts');
 
@@ -32,11 +38,12 @@ export const LoginRoute: AppRouteRecordRaw = {
   name: 'Login',
   component: () => import('/@/views/sys/login/Login.vue'),
   meta: {
-    title: t('routes.basic.login'),
+    title: '登录',
   },
 };
 
 // Basic routing without permission
+// 未经许可的基本路由
 export const basicRoutes = [
   LoginRoute,
   RootRoute,

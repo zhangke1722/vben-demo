@@ -1,7 +1,6 @@
 import type { AppRouteModule } from '/@/router/types';
 
 import { getParentLayout, LAYOUT } from '/@/router/constant';
-import { t } from '/@/hooks/web/useI18n';
 
 const comp: AppRouteModule = {
   path: '/comp',
@@ -11,7 +10,7 @@ const comp: AppRouteModule = {
   meta: {
     orderNo: 30,
     icon: 'ion:layers-outline',
-    title: t('routes.demo.comp.comp'),
+    title: '组件',
   },
 
   children: [
@@ -20,7 +19,7 @@ const comp: AppRouteModule = {
       name: 'BasicDemo',
       component: () => import('/@/views/demo/comp/button/index.vue'),
       meta: {
-        title: t('routes.demo.comp.basic'),
+        title: '基础组件',
       },
     },
 
@@ -31,7 +30,7 @@ const comp: AppRouteModule = {
       component: getParentLayout('FormDemo'),
       meta: {
         // icon: 'mdi:form-select',
-        title: t('routes.demo.form.form'),
+        title: 'Form',
       },
       children: [
         {
@@ -39,7 +38,7 @@ const comp: AppRouteModule = {
           name: 'FormBasicDemo',
           component: () => import('/@/views/demo/form/index.vue'),
           meta: {
-            title: t('routes.demo.form.basic'),
+            title: '基础表单',
           },
         },
         {
@@ -47,7 +46,7 @@ const comp: AppRouteModule = {
           name: 'UseFormDemo',
           component: () => import('/@/views/demo/form/UseForm.vue'),
           meta: {
-            title: t('routes.demo.form.useForm'),
+            title: 'useForm',
           },
         },
         {
@@ -55,7 +54,7 @@ const comp: AppRouteModule = {
           name: 'RefFormDemo',
           component: () => import('/@/views/demo/form/RefForm.vue'),
           meta: {
-            title: t('routes.demo.form.refForm'),
+            title: 'refForm',
           },
         },
         {
@@ -63,7 +62,7 @@ const comp: AppRouteModule = {
           name: 'AdvancedFormDemo',
           component: () => import('/@/views/demo/form/AdvancedForm.vue'),
           meta: {
-            title: t('routes.demo.form.advancedForm'),
+            title: '可收缩表单',
           },
         },
         {
@@ -71,7 +70,7 @@ const comp: AppRouteModule = {
           name: 'RuleFormDemo',
           component: () => import('/@/views/demo/form/RuleForm.vue'),
           meta: {
-            title: t('routes.demo.form.ruleForm'),
+            title: '表单验证',
           },
         },
         {
@@ -79,7 +78,7 @@ const comp: AppRouteModule = {
           name: 'DynamicFormDemo',
           component: () => import('/@/views/demo/form/DynamicForm.vue'),
           meta: {
-            title: t('routes.demo.form.dynamicForm'),
+            title: '动态表单',
           },
         },
         {
@@ -87,7 +86,7 @@ const comp: AppRouteModule = {
           name: 'CustomerFormDemo',
           component: () => import('/@/views/demo/form/CustomerForm.vue'),
           meta: {
-            title: t('routes.demo.form.customerForm'),
+            title: '自定义组件',
           },
         },
         {
@@ -95,7 +94,15 @@ const comp: AppRouteModule = {
           name: 'appendFormDemo',
           component: () => import('/@/views/demo/form/AppendForm.vue'),
           meta: {
-            title: t('routes.demo.form.appendForm'),
+            title: '表单增删实例',
+          },
+        },
+        {
+          path: 'tabsForm',
+          name: 'tabsFormDemo',
+          component: () => import('/@/views/demo/form/TabsForm.vue'),
+          meta: {
+            title: '标签页_多级field',
           },
         },
       ],
@@ -107,7 +114,7 @@ const comp: AppRouteModule = {
       component: getParentLayout('TableDemo'),
       meta: {
         // icon: 'carbon:table-split',
-        title: t('routes.demo.table.table'),
+        title: 'table',
       },
 
       children: [
@@ -116,7 +123,7 @@ const comp: AppRouteModule = {
           name: 'TableBasicDemo',
           component: () => import('/@/views/demo/table/Basic.vue'),
           meta: {
-            title: t('routes.demo.table.basic'),
+            title: '基础表格',
           },
         },
         {
@@ -124,7 +131,7 @@ const comp: AppRouteModule = {
           name: 'TreeTableDemo',
           component: () => import('/@/views/demo/table/TreeTable.vue'),
           meta: {
-            title: t('routes.demo.table.treeTable'),
+            title: '树形表格',
           },
         },
         {
@@ -132,7 +139,7 @@ const comp: AppRouteModule = {
           name: 'FetchTableDemo',
           component: () => import('/@/views/demo/table/FetchTable.vue'),
           meta: {
-            title: t('routes.demo.table.fetchTable'),
+            title: '远程加载实例',
           },
         },
         {
@@ -140,7 +147,7 @@ const comp: AppRouteModule = {
           name: 'FixedColumnDemo',
           component: () => import('/@/views/demo/table/FixedColumn.vue'),
           meta: {
-            title: t('routes.demo.table.fixedColumn'),
+            title: '固定列',
           },
         },
         {
@@ -148,7 +155,7 @@ const comp: AppRouteModule = {
           name: 'CustomerCellDemo',
           component: () => import('/@/views/demo/table/CustomerCell.vue'),
           meta: {
-            title: t('routes.demo.table.customerCell'),
+            title: '自定义列',
           },
         },
         {
@@ -156,7 +163,7 @@ const comp: AppRouteModule = {
           name: 'FormTableDemo',
           component: () => import('/@/views/demo/table/FormTable.vue'),
           meta: {
-            title: t('routes.demo.table.formTable'),
+            title: '开启搜索区域',
           },
         },
         {
@@ -164,7 +171,7 @@ const comp: AppRouteModule = {
           name: 'UseTableDemo',
           component: () => import('/@/views/demo/table/UseTable.vue'),
           meta: {
-            title: t('routes.demo.table.useTable'),
+            title: 'useTable',
           },
         },
         {
@@ -172,7 +179,7 @@ const comp: AppRouteModule = {
           name: 'RefTableDemo',
           component: () => import('/@/views/demo/table/RefTable.vue'),
           meta: {
-            title: t('routes.demo.table.refTable'),
+            title: 'refTable',
           },
         },
         {
@@ -180,7 +187,7 @@ const comp: AppRouteModule = {
           name: 'MultipleHeaderDemo',
           component: () => import('/@/views/demo/table/MultipleHeader.vue'),
           meta: {
-            title: t('routes.demo.table.multipleHeader'),
+            title: '多级表头',
           },
         },
         {
@@ -188,7 +195,7 @@ const comp: AppRouteModule = {
           name: 'MergeHeaderDemo',
           component: () => import('/@/views/demo/table/MergeHeader.vue'),
           meta: {
-            title: t('routes.demo.table.mergeHeader'),
+            title: '合并单元格',
           },
         },
         {
@@ -196,7 +203,7 @@ const comp: AppRouteModule = {
           name: 'ExpandTableDemo',
           component: () => import('/@/views/demo/table/ExpandTable.vue'),
           meta: {
-            title: t('routes.demo.table.expandTable'),
+            title: '可展开表格',
           },
         },
         {
@@ -204,7 +211,7 @@ const comp: AppRouteModule = {
           name: 'FixedHeightDemo',
           component: () => import('/@/views/demo/table/FixedHeight.vue'),
           meta: {
-            title: t('routes.demo.table.fixedHeight'),
+            title: '定高/头部自定义',
           },
         },
         {
@@ -212,7 +219,7 @@ const comp: AppRouteModule = {
           name: 'FooterTableDemo',
           component: () => import('/@/views/demo/table/FooterTable.vue'),
           meta: {
-            title: t('routes.demo.table.footerTable'),
+            title: '表尾行合计',
           },
         },
         {
@@ -220,7 +227,7 @@ const comp: AppRouteModule = {
           name: 'EditCellTableDemo',
           component: () => import('/@/views/demo/table/EditCellTable.vue'),
           meta: {
-            title: t('routes.demo.table.editCellTable'),
+            title: '可编辑单元格',
           },
         },
         {
@@ -228,7 +235,7 @@ const comp: AppRouteModule = {
           name: 'EditRowTableDemo',
           component: () => import('/@/views/demo/table/EditRowTable.vue'),
           meta: {
-            title: t('routes.demo.table.editRowTable'),
+            title: '可编辑行',
           },
         },
         {
@@ -236,7 +243,15 @@ const comp: AppRouteModule = {
           name: 'AuthColumnDemo',
           component: () => import('/@/views/demo/table/AuthColumn.vue'),
           meta: {
-            title: t('routes.demo.table.authColumn'),
+            title: '权限列',
+          },
+        },
+        {
+          path: 'resizeParentHeightTable',
+          name: 'ResizeParentHeightTable',
+          component: () => import('/@/views/demo/table/ResizeParentHeightTable.vue'),
+          meta: {
+            title: '继承父元素高度',
           },
         },
       ],
@@ -246,7 +261,7 @@ const comp: AppRouteModule = {
       name: 'transitionDemo',
       component: () => import('/@/views/demo/comp/transition/index.vue'),
       meta: {
-        title: t('routes.demo.comp.transition'),
+        title: '动画组件',
       },
     },
     {
@@ -254,7 +269,7 @@ const comp: AppRouteModule = {
       name: 'CropperDemo',
       component: () => import('/@/views/demo/comp/cropper/index.vue'),
       meta: {
-        title: t('routes.demo.comp.cropperImage'),
+        title: '图片裁剪',
       },
     },
 
@@ -263,7 +278,7 @@ const comp: AppRouteModule = {
       name: 'TimeDemo',
       component: () => import('/@/views/demo/comp/time/index.vue'),
       meta: {
-        title: t('routes.demo.comp.time'),
+        title: '相对时间',
       },
     },
     {
@@ -271,7 +286,7 @@ const comp: AppRouteModule = {
       name: 'CountTo',
       component: () => import('/@/views/demo/comp/count-to/index.vue'),
       meta: {
-        title: t('routes.demo.comp.countTo'),
+        title: '数字动画',
       },
     },
     {
@@ -281,7 +296,7 @@ const comp: AppRouteModule = {
       component: getParentLayout('TreeDemo'),
       meta: {
         // icon: 'clarity:tree-view-line',
-        title: t('routes.demo.comp.tree'),
+        title: 'tree',
       },
       children: [
         {
@@ -289,7 +304,7 @@ const comp: AppRouteModule = {
           name: 'BasicTreeDemo',
           component: () => import('/@/views/demo/tree/index.vue'),
           meta: {
-            title: t('routes.demo.comp.treeBasic'),
+            title: '基础树',
           },
         },
         {
@@ -297,7 +312,7 @@ const comp: AppRouteModule = {
           name: 'EditTreeDemo',
           component: () => import('/@/views/demo/tree/EditTree.vue'),
           meta: {
-            title: t('routes.demo.comp.editTree'),
+            title: '可搜索/工具栏',
           },
         },
         {
@@ -305,7 +320,7 @@ const comp: AppRouteModule = {
           name: 'ActionTreeDemo',
           component: () => import('/@/views/demo/tree/ActionTree.vue'),
           meta: {
-            title: t('routes.demo.comp.actionTree'),
+            title: '函数操作示例',
           },
         },
       ],
@@ -317,7 +332,7 @@ const comp: AppRouteModule = {
       component: getParentLayout('EditorDemo'),
       meta: {
         // icon: 'carbon:table-split',
-        title: t('routes.demo.editor.editor'),
+        title: '编辑器',
       },
       children: [
         {
@@ -325,7 +340,7 @@ const comp: AppRouteModule = {
           component: () => import('/@/views/demo/editor/json/index.vue'),
           name: 'JsonEditorDemo',
           meta: {
-            title: t('routes.demo.editor.jsonEditor'),
+            title: 'json编辑器',
           },
         },
         {
@@ -333,7 +348,7 @@ const comp: AppRouteModule = {
           component: getParentLayout('MarkdownDemo'),
           name: 'MarkdownDemo',
           meta: {
-            title: t('routes.demo.editor.markdown'),
+            title: 'markdown',
           },
           redirect: '/comp/editor/markdown/index',
           children: [
@@ -342,7 +357,7 @@ const comp: AppRouteModule = {
               name: 'MarkDownBasicDemo',
               component: () => import('/@/views/demo/editor/markdown/index.vue'),
               meta: {
-                title: t('routes.demo.editor.tinymceBasic'),
+                title: '基础使用',
               },
             },
             {
@@ -350,7 +365,7 @@ const comp: AppRouteModule = {
               name: 'MarkDownFormDemo',
               component: () => import('/@/views/demo/editor/markdown/Editor.vue'),
               meta: {
-                title: t('routes.demo.editor.tinymceForm'),
+                title: '嵌入form',
               },
             },
           ],
@@ -361,7 +376,7 @@ const comp: AppRouteModule = {
           component: getParentLayout('TinymceDemo'),
           name: 'TinymceDemo',
           meta: {
-            title: t('routes.demo.editor.tinymce'),
+            title: '富文本',
           },
           redirect: '/comp/editor/tinymce/index',
           children: [
@@ -370,7 +385,7 @@ const comp: AppRouteModule = {
               name: 'TinymceBasicDemo',
               component: () => import('/@/views/demo/editor/tinymce/index.vue'),
               meta: {
-                title: t('routes.demo.editor.tinymceBasic'),
+                title: '基础使用',
               },
             },
             {
@@ -378,7 +393,7 @@ const comp: AppRouteModule = {
               name: 'TinymceFormDemo',
               component: () => import('/@/views/demo/editor/tinymce/Editor.vue'),
               meta: {
-                title: t('routes.demo.editor.tinymceForm'),
+                title: '嵌入form',
               },
             },
           ],
@@ -391,7 +406,7 @@ const comp: AppRouteModule = {
       redirect: '/comp/scroll/basic',
       component: getParentLayout('ScrollDemo'),
       meta: {
-        title: t('routes.demo.comp.scroll'),
+        title: '滚动组件',
       },
       children: [
         {
@@ -399,7 +414,7 @@ const comp: AppRouteModule = {
           name: 'BasicScrollDemo',
           component: () => import('/@/views/demo/comp/scroll/index.vue'),
           meta: {
-            title: t('routes.demo.comp.scrollBasic'),
+            title: '基础滚动',
           },
         },
         {
@@ -407,7 +422,7 @@ const comp: AppRouteModule = {
           name: 'ActionScrollDemo',
           component: () => import('/@/views/demo/comp/scroll/Action.vue'),
           meta: {
-            title: t('routes.demo.comp.scrollAction'),
+            title: '滚动函数',
           },
         },
         {
@@ -415,7 +430,7 @@ const comp: AppRouteModule = {
           name: 'VirtualScrollDemo',
           component: () => import('/@/views/demo/comp/scroll/VirtualScroll.vue'),
           meta: {
-            title: t('routes.demo.comp.virtualScroll'),
+            title: '虚拟滚动',
           },
         },
       ],
@@ -426,7 +441,7 @@ const comp: AppRouteModule = {
       name: 'ModalDemo',
       component: () => import('/@/views/demo/comp/modal/index.vue'),
       meta: {
-        title: t('routes.demo.comp.modal'),
+        title: '弹窗扩展',
       },
     },
     {
@@ -434,7 +449,7 @@ const comp: AppRouteModule = {
       name: 'DrawerDemo',
       component: () => import('/@/views/demo/comp/drawer/index.vue'),
       meta: {
-        title: t('routes.demo.comp.drawer'),
+        title: '抽屉扩展',
       },
     },
     {
@@ -442,7 +457,7 @@ const comp: AppRouteModule = {
       name: 'DescDemo',
       component: () => import('/@/views/demo/comp/desc/index.vue'),
       meta: {
-        title: t('routes.demo.comp.desc'),
+        title: '详情组件',
       },
     },
 
@@ -452,7 +467,7 @@ const comp: AppRouteModule = {
       component: getParentLayout('LazyDemo'),
       redirect: '/comp/lazy/basic',
       meta: {
-        title: t('routes.demo.comp.lazy'),
+        title: '懒加载组件',
       },
       children: [
         {
@@ -460,7 +475,7 @@ const comp: AppRouteModule = {
           name: 'BasicLazyDemo',
           component: () => import('/@/views/demo/comp/lazy/index.vue'),
           meta: {
-            title: t('routes.demo.comp.lazyBasic'),
+            title: '基础实例',
           },
         },
         {
@@ -468,7 +483,7 @@ const comp: AppRouteModule = {
           name: 'BasicTransitionDemo',
           component: () => import('/@/views/demo/comp/lazy/Transition.vue'),
           meta: {
-            title: t('routes.demo.comp.lazyTransition'),
+            title: '动画效果',
           },
         },
       ],
@@ -479,7 +494,7 @@ const comp: AppRouteModule = {
       component: getParentLayout('VerifyDemo'),
       redirect: '/comp/verify/drag',
       meta: {
-        title: t('routes.demo.comp.verify'),
+        title: '验证组件',
       },
       children: [
         {
@@ -487,7 +502,7 @@ const comp: AppRouteModule = {
           name: 'VerifyDragDemo',
           component: () => import('/@/views/demo/comp/verify/index.vue'),
           meta: {
-            title: t('routes.demo.comp.verifyDrag'),
+            title: '拖拽校验',
           },
         },
         {
@@ -495,7 +510,7 @@ const comp: AppRouteModule = {
           name: 'VerifyRotateDemo',
           component: () => import('/@/views/demo/comp/verify/Rotate.vue'),
           meta: {
-            title: t('routes.demo.comp.verifyRotate'),
+            title: '图片还原',
           },
         },
       ],
@@ -507,7 +522,7 @@ const comp: AppRouteModule = {
       name: 'QrCodeDemo',
       component: () => import('/@/views/demo/comp/qrcode/index.vue'),
       meta: {
-        title: t('routes.demo.comp.qrcode'),
+        title: '二维码组件',
       },
     },
     {
@@ -515,7 +530,7 @@ const comp: AppRouteModule = {
       name: 'StrengthMeterDemo',
       component: () => import('/@/views/demo/comp/strength-meter/index.vue'),
       meta: {
-        title: t('routes.demo.comp.strength'),
+        title: '密码强度组件',
       },
     },
     {
@@ -523,7 +538,7 @@ const comp: AppRouteModule = {
       name: 'UploadDemo',
       component: () => import('/@/views/demo/comp/upload/index.vue'),
       meta: {
-        title: t('routes.demo.comp.upload'),
+        title: '上传组件',
       },
     },
     {
@@ -531,7 +546,7 @@ const comp: AppRouteModule = {
       name: 'LoadingDemo',
       component: () => import('/@/views/demo/comp/loading/index.vue'),
       meta: {
-        title: t('routes.demo.comp.loading'),
+        title: 'Loading',
       },
     },
     {
@@ -539,7 +554,7 @@ const comp: AppRouteModule = {
       name: 'CardListDemo',
       component: () => import('/@/views/demo/comp/card-list/index.vue'),
       meta: {
-        title: t('routes.demo.comp.cardList'),
+        title: '卡片列表',
       },
     },
   ],

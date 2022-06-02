@@ -1,7 +1,12 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:32
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 10:45:15
+ * @Description: file content
+ */
 // token key
 export const TOKEN_KEY = 'TOKEN__';
-
-export const LOCALE_KEY = 'LOCALE__';
 
 // user info key
 export const USER_INFO_KEY = 'USER__INFO__';

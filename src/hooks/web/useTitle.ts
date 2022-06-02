@@ -1,9 +1,14 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:32
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 10:46:14
+ * @Description: file content
+ */
 import { watch, unref } from 'vue';
-import { useI18n } from '/@/hooks/web/useI18n';
 import { useTitle as usePageTitle } from '@vueuse/core';
 import { useGlobSetting } from '/@/hooks/setting';
 import { useRouter } from 'vue-router';
-import { useLocaleStore } from '/@/store/modules/locale';
 
 import { REDIRECT_NAME } from '/@/router/constant';
 
@@ -12,14 +17,12 @@ import { REDIRECT_NAME } from '/@/router/constant';
  */
 export function useTitle() {
   const { title } = useGlobSetting();
-  const { t } = useI18n();
   const { currentRoute } = useRouter();
-  const localeStore = useLocaleStore();
 
   const pageTitle = usePageTitle();
 
   watch(
-    [() => currentRoute.value.path, () => localeStore.getLocale],
+    [() => currentRoute.value.path],
     () => {
       const route = unref(currentRoute);
 
@@ -27,7 +30,7 @@ export function useTitle() {
         return;
       }
 
-      const tTitle = t(route?.meta?.title as string);
+      const tTitle = route?.meta?.title as string;
       pageTitle.value = tTitle ? ` ${tTitle} - ${title} ` : `${title}`;
     },
     { immediate: true },

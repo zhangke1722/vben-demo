@@ -1,5 +1,12 @@
+<!--
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:32
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 11:29:56
+ * @Description: file content
+-->
 <template>
-  <ConfigProvider :locale="getAntdLocale">
+  <ConfigProvider :locale="zhCN">
     <AppProvider>
       <RouterView />
     </AppProvider>
@@ -7,14 +14,13 @@
 </template>
 
 <script lang="ts" setup>
-  import { ConfigProvider } from 'ant-design-vue';
-  import { AppProvider } from '/@/components/Application';
-  import { useTitle } from '/@/hooks/web/useTitle';
-  import { useLocale } from '/@/locales/useLocale';
+import { ConfigProvider } from 'ant-design-vue';
+import { AppProvider } from '/@/components/Application';
+import { useTitle } from '/@/hooks/web/useTitle';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import 'dayjs/locale/zh-cn';
+// support Multi-language
 
-  // support Multi-language
-  const { getAntdLocale } = useLocale();
-
-  // Listening to page changes and dynamically changing site titles
-  useTitle();
+// Listening to page changes and dynamically changing site titles
+useTitle();
 </script>

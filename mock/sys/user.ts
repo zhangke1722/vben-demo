@@ -8,7 +8,6 @@ export function createFakeUserList() {
       username: 'vben',
       realName: 'Vben Admin',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
-
       desc: 'manager',
       password: '123456',
       token: 'fakeToken1',
@@ -47,11 +46,11 @@ const fakeCodeList: any = {
 export default [
   // mock user login
   {
-    url: '/api/auth/token/login',
+    url: '/basic-api/login',
     timeout: 200,
     method: 'post',
     response: ({ body }) => {
-      const { username, password, randomStr } = body;
+      const { username, password } = body;
       const checkUser = createFakeUserList().find(
         (item) => item.username === username && password === item.password,
       );
@@ -110,6 +109,14 @@ export default [
         return resultError('Invalid token!');
       }
       return resultSuccess(undefined, { message: 'Token has been destroyed' });
+    },
+  },
+  {
+    url: '/basic-api/testRetry',
+    statusCode: 405,
+    method: 'get',
+    response: () => {
+      return resultError('Error!');
     },
   },
 ] as MockMethod[];

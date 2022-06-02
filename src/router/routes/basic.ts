@@ -1,5 +1,11 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:33
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-01 18:08:08
+ * @Description: file content
+ */
 import type { AppRouteRecordRaw } from '/@/router/types';
-import { t } from '/@/hooks/web/useI18n';
 import {
   REDIRECT_NAME,
   LAYOUT,
@@ -69,7 +75,7 @@ export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {
       name: 'ErrorLogList',
       component: () => import('/@/views/sys/error-log/index.vue'),
       meta: {
-        title: t('routes.basic.errorLogList'),
+        title: '错误日志列表',
         hideBreadcrumb: true,
         currentActiveMenu: '/error-log',
       },

@@ -1,8 +1,14 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-02-16 11:55:33
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-01 18:21:13
+ * @Description: file content
+ */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 const IFrame = () => import('/@/views/sys/iframe/FrameBlank.vue');
-import { t } from '/@/hooks/web/useI18n';
 
 const iframe: AppRouteModule = {
   path: '/frame',
@@ -12,7 +18,7 @@ const iframe: AppRouteModule = {
   meta: {
     orderNo: 1000,
     icon: 'ion:tv-outline',
-    title: t('routes.demo.iframe.frame'),
+    title: '外部页面',
   },
 
   children: [
@@ -22,7 +28,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://vvbin.cn/doc-next/',
-        title: t('routes.demo.iframe.doc'),
+        title: '项目文档(内嵌)',
       },
     },
     {
@@ -31,7 +37,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://2x.antdv.com/docs/vue/introduce-cn/',
-        title: t('routes.demo.iframe.antv'),
+        title: '什么文档内嵌',
       },
     },
     {
@@ -39,7 +45,7 @@ const iframe: AppRouteModule = {
       name: 'DocExternal',
       component: IFrame,
       meta: {
-        title: t('routes.demo.iframe.docExternal'),
+        title: '项目文档外链',
       },
     },
   ],
