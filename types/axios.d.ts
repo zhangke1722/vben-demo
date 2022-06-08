@@ -2,7 +2,7 @@
  * @Author: Zack
  * @Date: 2022-06-02 11:49:07
  * @LastEditors: Zack
- * @LastEditTime: 2022-06-08 16:44:24
+ * @LastEditTime: 2022-06-08 18:13:44
  * @Description: file content
  */
 export type ErrorMessageMode = 'none' | 'modal' | 'message' | undefined;
@@ -44,6 +44,8 @@ export interface Result<T = any> {
   type: 'success' | 'error' | 'warning';
   msg: string;
   result: T;
+  access_token: string;
+  token: string;
 }
 
 // multipart/form-data: upload file

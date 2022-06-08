@@ -2,7 +2,7 @@
  * @Author: Zack
  * @Date: 2022-06-02 11:49:07
  * @LastEditors: Zack
- * @LastEditTime: 2022-06-08 17:53:12
+ * @LastEditTime: 2022-06-08 18:23:40
  * @Description: file content
  */
 import { defHttp } from '/@/utils/http/axios';
@@ -14,7 +14,7 @@ import { ErrorMessageMode } from '/#/axios';
 enum Api {
   Login = '/auth/token/login',
   Logout = '/logout',
-  GetUserInfo = '/getUserInfo',
+  GetUserInfo = '/platform/user/info',
   GetPermCode = '/getPermCode',
 }
 
@@ -25,7 +25,6 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
   return defHttp.post<LoginResultModel>(
     {
       url: Api.Login,
-
       headers: {
         'Content-Type': ContentTypeEnum.FORM_URLENCODED,
       },
