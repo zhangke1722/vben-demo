@@ -2,7 +2,7 @@
  * @Author: Zack
  * @Date: 2022-02-16 11:55:33
  * @LastEditors: Zack
- * @LastEditTime: 2022-06-01 18:08:08
+ * @LastEditTime: 2022-06-02 17:18:59
  * @Description: file content
  */
 import type { AppRouteRecordRaw } from '/@/router/types';
@@ -54,30 +54,6 @@ export const REDIRECT_ROUTE: AppRouteRecordRaw = {
       meta: {
         title: REDIRECT_NAME,
         hideBreadcrumb: true,
-      },
-    },
-  ],
-};
-
-export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {
-  path: '/error-log',
-  name: 'ErrorLog',
-  component: LAYOUT,
-  redirect: '/error-log/list',
-  meta: {
-    title: 'ErrorLog',
-    hideBreadcrumb: true,
-    hideChildrenInMenu: true,
-  },
-  children: [
-    {
-      path: 'list',
-      name: 'ErrorLogList',
-      component: () => import('/@/views/sys/error-log/index.vue'),
-      meta: {
-        title: '错误日志列表',
-        hideBreadcrumb: true,
-        currentActiveMenu: '/error-log',
       },
     },
   ],

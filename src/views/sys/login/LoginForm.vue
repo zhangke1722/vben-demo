@@ -1,29 +1,36 @@
 <template>
-  <LoginFormTitle v-show="getShow" class="enter-x" />
-  <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef" v-show="getShow"
-    @keypress.enter="handleLogin">
-    <FormItem name="account" class="enter-x">
-      <Input size="large" v-model:value="formData.account" placeholder="账号" class="fix-auto-fill" />
+  <h2 class="mb-3 text-2xl font-bold text-center xl:text-3xl enter-x xl:text-left">
+    登录
+  </h2>
+  <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef" @keypress.enter="handleLogin">
+    <FormItem name="username" class="enter-x">
+      <Input size="large" v-model:value="formData.username" placeholder="账号" class="fix-auto-fill" />
     </FormItem>
     <FormItem name="password" class="enter-x">
-      <InputPassword size="large" visibilityToggle v-model:value="formData.password" placeholder="密码" />
+      <InputPassword size="large" visibilityToggle :autoComplete="true" v-model:value="formData.password"
+        placeholder="密码" />
+    </FormItem>
+    <FormItem name="code" class="enter-x">
+      <ARow>
+        <ACol :span="18">
+          <Input size="large" :maxlength="imgCode.len" v-model:value="formData.code" class="form-code"
+            placeholder="验证码" />
+        </ACol>
+        <ACol :span="6">
+          <img height="100%" :preview="false" :src="imgCode.src" alt="验证码" @click="getImgCode" />
+        </ACol>
+      </ARow>
     </FormItem>
 
     <ARow class="enter-x">
       <ACol :span="12">
-        <FormItem>
-          <!-- No logic, you need to deal with it yourself -->
-          <Checkbox v-model:checked="rememberMe" size="small">
-            记住我
-          </Checkbox>
-        </FormItem>
       </ACol>
       <ACol :span="12">
         <FormItem :style="{ 'text-align': 'right' }">
           <!-- No logic, you need to deal with it yourself -->
-          <Button type="link" size="small" @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">
-            忘记密码?
-          </Button>
+          <!-- <Button type="link" size="small">
+            注册
+          </Button> -->
         </FormItem>
       </ACol>
     </ARow>
@@ -32,59 +39,20 @@
       <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
         登录
       </Button>
-      <!-- <Button size="large" class="mt-4 enter-x" block @click="handleRegister">
-    注册
-      </Button> -->
     </FormItem>
-    <ARow class="enter-x">
-      <ACol :md="8" :xs="24">
-        <Button block @click="setLoginState(LoginStateEnum.MOBILE)">
-          手机登录
-        </Button>
-      </ACol>
-      <ACol :md="8" :xs="24" class="!my-2 !md:my-0 xs:mx-0 md:mx-2">
-        <Button block @click="setLoginState(LoginStateEnum.QR_CODE)">
-          二维码登录
-        </Button>
-      </ACol>
-      <ACol :md="6" :xs="24">
-        <Button block @click="setLoginState(LoginStateEnum.REGISTER)">
-          注册
-        </Button>
-      </ACol>
-    </ARow>
 
-    <Divider class="enter-x">其他登录方式</Divider>
 
-    <div class="flex justify-evenly enter-x" :class="`${prefixCls}-sign-in-way`">
-      <GithubFilled />
-      <WechatFilled />
-      <AlipayCircleFilled />
-      <GoogleCircleFilled />
-      <TwitterCircleFilled />
-    </div>
   </Form>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, unref, computed } from 'vue';
-
-import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
-import {
-  GithubFilled,
-  WechatFilled,
-  AlipayCircleFilled,
-  GoogleCircleFilled,
-  TwitterCircleFilled,
-} from '@ant-design/icons-vue';
-import LoginFormTitle from './LoginFormTitle.vue';
-
+import { reactive, ref } from 'vue';
+import { Form, Input, Row, Col, Button } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
-
 import { useUserStore } from '/@/store/modules/user';
-import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
+import { useFormRules, useFormValid } from './useLogin';
 import { useDesign } from '/@/hooks/web/useDesign';
 //import { onKeyStroke } from '@vueuse/core';
-
+import type { FormInstance } from 'ant-design-vue';
 const ACol = Col;
 const ARow = Row;
 const FormItem = Form.Item;
@@ -93,32 +61,55 @@ const { notification, createErrorModal } = useMessage();
 const { prefixCls } = useDesign('login');
 const userStore = useUserStore();
 
-const { setLoginState, getLoginState } = useLoginState();
 const { getFormRules } = useFormRules();
 
-const formRef = ref();
+const formRef = ref<FormInstance>();
 const loading = ref(false);
-const rememberMe = ref(false);
+
 
 const formData = reactive({
-  account: 'vben',
-  password: '123456',
+  username: 'zhangke1722@163.com',
+  password: '123456abc',
+  code: '',
+  randomStr: ''
 });
-
+const imgCode = reactive({
+  src: '',
+  len: 4
+});
 const { validForm } = useFormValid(formRef);
 
-//onKeyStroke('Enter', handleLogin);
+function register() {
+  console.log(111)
+}
+function randomString(receive: { length: number; type: string }) {
+  const { type, length } = receive;
+  const chars = type === 'number' ? '0123456789' : '0ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz123456789';
+  const maxPos = chars.length;
+  let string = '';
+  for (let i = 0; i < length; i++) {
+    string += chars.charAt(Math.floor(Math.random() * maxPos));
+  }
+  return string;
+}
+function getImgCode() {
+  formData.randomStr = randomString({ length: 17, type: 'number' });
+  imgCode.src = `/api/captcha?randomStr=${formData.randomStr}`;
+  formData.code = '';
+}
 
-const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
 async function handleLogin() {
   const data = await validForm();
   if (!data) return;
   try {
     loading.value = true;
+    console.log(data)
     const userInfo = await userStore.login({
       password: data.password,
-      username: data.account,
+      username: data.username,
+      code: data.code,
+      randomStr: formData.randomStr,
       mode: 'none', //不要默认的错误提示
     });
     if (userInfo) {
@@ -138,4 +129,10 @@ async function handleLogin() {
     loading.value = false;
   }
 }
+getImgCode()
 </script>
+<style lang="less">
+.form-code {
+  min-width: auto !important;
+}
+</style>

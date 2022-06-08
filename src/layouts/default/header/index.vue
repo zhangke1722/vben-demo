@@ -22,8 +22,6 @@
     <div :class="`${prefixCls}-action`">
       <AppSearch :class="`${prefixCls}-action__item `" v-if="getShowSearch" />
 
-      <ErrorAction v-if="getUseErrorHandle" :class="`${prefixCls}-action__item error-action`" />
-
       <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
 
       <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
@@ -53,7 +51,7 @@ import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 import { MenuModeEnum, MenuSplitTyeEnum } from '/@/enums/menuEnum';
 import { SettingButtonPositionEnum } from '/@/enums/appEnum';
 
-import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction } from './components';
+import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify } from './components';
 import { useAppInject } from '/@/hooks/web/useAppInject';
 import { useDesign } from '/@/hooks/web/useDesign';
 
@@ -71,7 +69,6 @@ export default defineComponent({
     FullScreen,
     Notify,
     AppSearch,
-    ErrorAction,
     SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
       loading: true,
     }),
@@ -89,7 +86,7 @@ export default defineComponent({
       getMenuWidth,
       getIsMixSidebar,
     } = useMenuSetting();
-    const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } =
+    const { getShowSettingButton, getSettingButtonPosition } =
       useRootSetting();
 
     const {
@@ -161,7 +158,6 @@ export default defineComponent({
       getShowTopMenu,
       getShowFullScreen,
       getShowNotice,
-      getUseErrorHandle,
       getLogoWidth,
       getIsMixSidebar,
       getShowSettingButton,

@@ -2,14 +2,13 @@
  * @Author: Zack
  * @Date: 2022-06-01 14:21:12
  * @LastEditors: Zack
- * @LastEditTime: 2022-06-01 18:08:21
+ * @LastEditTime: 2022-06-02 17:15:55
  * @Description: file content
  */
 import type { AppRouteRecordRaw, AppRouteModule } from '/@/router/types';
 
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '/@/router/routes/basic';
 
-import { mainOutRoutes } from './mainOut';
 import { PageEnum } from '/@/enums/pageEnum';
 
 const modules = import.meta.globEager('./modules/**/*.ts');
@@ -44,10 +43,4 @@ export const LoginRoute: AppRouteRecordRaw = {
 
 // Basic routing without permission
 // 未经许可的基本路由
-export const basicRoutes = [
-  LoginRoute,
-  RootRoute,
-  ...mainOutRoutes,
-  REDIRECT_ROUTE,
-  PAGE_NOT_FOUND_ROUTE,
-];
+export const basicRoutes = [LoginRoute, RootRoute, REDIRECT_ROUTE, PAGE_NOT_FOUND_ROUTE];

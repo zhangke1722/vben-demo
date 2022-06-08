@@ -1,3 +1,10 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-02 11:49:07
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-06 15:01:50
+ * @Description: file content
+ */
 import type { Component } from 'vue';
 import type { ComponentType } from './types/index';
 
@@ -30,7 +37,6 @@ import ApiCascader from './components/ApiCascader.vue';
 import { BasicUpload } from '/@/components/Upload';
 import { StrengthMeter } from '/@/components/StrengthMeter';
 import { IconPicker } from '/@/components/Icon';
-import { CountdownInput } from '/@/components/CountDown';
 
 const componentMap = new Map<ComponentType, Component>();
 
@@ -65,7 +71,6 @@ componentMap.set('WeekPicker', DatePicker.WeekPicker);
 componentMap.set('TimePicker', TimePicker);
 componentMap.set('StrengthMeter', StrengthMeter);
 componentMap.set('IconPicker', IconPicker);
-componentMap.set('InputCountDown', CountdownInput);
 
 componentMap.set('Upload', BasicUpload);
 componentMap.set('Divider', Divider);

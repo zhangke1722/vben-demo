@@ -2,7 +2,7 @@
  * @Author: Zack
  * @Date: 2022-06-01 17:20:15
  * @LastEditors: Zack
- * @LastEditTime: 2022-06-02 10:39:00
+ * @LastEditTime: 2022-06-02 17:25:32
  * @Description: file content
  */
 import 'virtual:windi-base.css';
@@ -14,7 +14,6 @@ import 'virtual:svg-icons-register';
 import App from './App.vue';
 import { createApp } from 'vue';
 import { initAppConfigStore } from '/@/logics/initAppConfig';
-import { setupErrorHandle } from '/@/logics/error-handle';
 import { router, setupRouter } from '/@/router';
 import { setupRouterGuard } from '/@/router/guard';
 import { setupStore } from '/@/store';
@@ -52,10 +51,6 @@ async function bootstrap() {
   // Register global directive
   // 注册全局指令
   setupGlobDirectives(app);
-
-  // Configure global error handling
-  // 配置全局错误处理
-  setupErrorHandle(app);
 
   // https://next.router.vuejs.org/api/#isready
   // await router.isReady();

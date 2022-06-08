@@ -1,9 +1,18 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-02 11:49:07
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-08 17:39:18
+ * @Description: file content
+ */
 /**
  * @description: Login interface parameters
  */
 export interface LoginParams {
   username: string;
   password: string;
+  code: string;
+  randomStr: string;
 }
 
 export interface RoleInfo {

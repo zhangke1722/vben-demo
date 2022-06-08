@@ -13,7 +13,6 @@ import { RequestEnum, ResultEnum, ContentTypeEnum } from '/@/enums/httpEnum';
 import { isString } from '/@/utils/is';
 import { getToken } from '/@/utils/auth';
 import { setObjToUrlParams, deepMerge } from '/@/utils';
-import { useErrorLogStoreWithOut } from '/@/store/modules/errorLog';
 import { joinTimestamp, formatRequestDate } from './helper';
 import { useUserStoreWithOut } from '/@/store/modules/user';
 import { AxiosRetry } from '/@/utils/http/axios/axiosRetry';
@@ -43,12 +42,13 @@ const transform: AxiosTransform = {
     // 错误的时候返回
 
     const { data } = res;
+    console.log(data);
     if (!data) {
       // return '[HTTP] Request has no return value';
       throw new Error('请求出错,请稍后重试');
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code, result, message } = data;
+    const { code, result, msg } = data;
 
     // 这里逻辑可以根据项目进行修改
     const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
@@ -67,8 +67,9 @@ const transform: AxiosTransform = {
         userStore.logout(true);
         break;
       default:
-        if (message) {
-          timeoutMsg = message;
+        if (msg) {
+          console.log(222);
+          timeoutMsg = msg;
         }
     }
 
@@ -138,12 +139,11 @@ const transform: AxiosTransform = {
   requestInterceptors: (config, options) => {
     // 请求之前处理config
     const token = getToken();
-    if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
-      // jwt token
-      (config as Recordable).headers.Authorization = options.authenticationScheme
-        ? `${options.authenticationScheme} ${token}`
-        : token;
-    }
+    // if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
+    //   // jwt token
+    //   (config as Recordable).headers.Authorization = `${options.authenticationScheme} ${token}`;
+    // }
+    (config as Recordable).headers.Authorization = `${options.authenticationScheme} ${token}`;
     return config;
   },
 
@@ -152,50 +152,6 @@ const transform: AxiosTransform = {
    */
   responseInterceptors: (res: AxiosResponse<any>) => {
     return res;
-  },
-
-  /**
-   * @description: 响应错误处理
-   */
-  responseInterceptorsCatch: (axiosInstance: AxiosResponse, error: any) => {
-    const errorLogStore = useErrorLogStoreWithOut();
-    errorLogStore.addAjaxErrorInfo(error);
-    const { response, code, message, config } = error || {};
-    const errorMessageMode = config?.requestOptions?.errorMessageMode || 'none';
-    const msg: string = response?.data?.error?.message ?? '';
-    const err: string = error?.toString?.() ?? '';
-    let errMessage = '';
-
-    try {
-      if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
-        errMessage = '接口请求超时,请刷新页面重试!';
-      }
-      if (err?.includes('Network Error')) {
-        errMessage = '网络异常，请检查您的网络连接是否正常!';
-      }
-
-      if (errMessage) {
-        if (errorMessageMode === 'modal') {
-          createErrorModal({ title: '错误提示', content: errMessage });
-        } else if (errorMessageMode === 'message') {
-          createMessage.error(errMessage);
-        }
-        return Promise.reject(error);
-      }
-    } catch (error) {
-      throw new Error(error as unknown as string);
-    }
-
-    checkStatus(error?.response?.status, msg, errorMessageMode);
-
-    // 添加自动重试机制 保险起见 只针对GET请求
-    const retryRequest = new AxiosRetry();
-    const { isOpenRetry } = config.requestOptions.retryRequest;
-    config.method?.toUpperCase() === RequestEnum.GET &&
-      isOpenRetry &&
-      // @ts-ignore
-      retryRequest.retry(axiosInstance, error);
-    return Promise.reject(error);
   },
 };
 
@@ -206,12 +162,12 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
         // authenticationScheme: 'Bearer',
-        authenticationScheme: '',
+        authenticationScheme: 'Bearer',
         timeout: 10 * 1000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,
 
-        headers: { 'Content-Type': ContentTypeEnum.JSON },
+        headers: { 'Content-Type': ContentTypeEnum.JSON, tenantId: 'erp' },
         // 如果是form-data格式
         // headers: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
         // 数据处理方式

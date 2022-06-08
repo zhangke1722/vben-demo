@@ -1,3 +1,10 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-02 11:49:07
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-08 16:44:24
+ * @Description: file content
+ */
 export type ErrorMessageMode = 'none' | 'modal' | 'message' | undefined;
 
 export interface RequestOptions {
@@ -35,7 +42,7 @@ export interface RetryRequest {
 export interface Result<T = any> {
   code: number;
   type: 'success' | 'error' | 'warning';
-  message: string;
+  msg: string;
   result: T;
 }
 

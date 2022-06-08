@@ -1,13 +1,11 @@
 import { ComputedRef, isRef, nextTick, Ref, ref, unref, watch } from 'vue';
 import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
 import { useWindowSizeFn } from '/@/hooks/event/useWindowSizeFn';
-import { useLayoutHeight } from '/@/layouts/default/content/useContentViewHeight';
 import { getViewportOffset } from '/@/utils/domUtils';
 import { isNumber, isString } from '/@/utils/is';
 
 export interface CompensationHeight {
   // 使用 layout Footer 高度作为判断补偿高度的条件
-  useLayoutFooter: boolean;
   // refs HTMLElement
   elements?: Ref[];
 }
@@ -35,14 +33,6 @@ export function useContentHeight(
   offsetHeightRef: Ref<number> = ref(0),
 ) {
   const contentHeight: Ref<Nullable<number>> = ref(null);
-  const { footerHeightRef: layoutFooterHeightRef } = useLayoutHeight();
-  let compensationHeight: CompensationHeight = {
-    useLayoutFooter: true,
-  };
-
-  const setCompensation = (params: CompensationHeight) => {
-    compensationHeight = params;
-  };
 
   function redoHeight() {
     nextTick(() => {
@@ -143,23 +133,10 @@ export function useContentHeight(
 
     let height =
       bottomIncludeBody -
-      unref(layoutFooterHeightRef) -
       unref(offsetHeightRef) -
       substractHeight -
       substractSpaceHeight -
       upwardSpaceHeight;
-
-    // compensation height
-    const calcCompensationHeight = () => {
-      compensationHeight.elements?.forEach((item) => {
-        height += getEl(unref(item))?.offsetHeight ?? 0;
-      });
-    };
-    if (compensationHeight.useLayoutFooter && unref(layoutFooterHeightRef) > 0) {
-      calcCompensationHeight();
-    } else {
-      calcCompensationHeight();
-    }
 
     contentHeight.value = height;
   }
@@ -177,7 +154,7 @@ export function useContentHeight(
     { immediate: true },
   );
   watch(
-    () => [layoutFooterHeightRef.value],
+    () => [],
     () => {
       calcContentHeight();
     },
@@ -187,5 +164,5 @@ export function useContentHeight(
     },
   );
 
-  return { redoHeight, setCompensation, contentHeight };
+  return { redoHeight, contentHeight };
 }

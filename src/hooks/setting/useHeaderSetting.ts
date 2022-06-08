@@ -1,3 +1,10 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-02 11:05:05
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-02 18:15:49
+ * @Description: file content
+ */
 import type { HeaderSetting } from '/#/config';
 
 import { computed, unref } from 'vue';
@@ -46,8 +53,6 @@ export function useHeaderSetting() {
 
   const getShowMixHeaderRef = computed(() => !unref(getIsSidebarType) && unref(getShowHeader));
 
-  const getShowDoc = computed(() => appStore.getHeaderSetting.showDoc);
-
   const getHeaderTheme = computed(() => appStore.getHeaderSetting.theme);
 
   const getShowHeader = computed(() => appStore.getHeaderSetting.show);
@@ -57,8 +62,6 @@ export function useHeaderSetting() {
   const getHeaderBgColor = computed(() => appStore.getHeaderSetting.bgColor);
 
   const getShowSearch = computed(() => appStore.getHeaderSetting.showSearch);
-
-  const getUseLockPage = computed(() => appStore.getHeaderSetting.useLockPage);
 
   const getShowFullScreen = computed(() => appStore.getHeaderSetting.showFullScreen);
 
@@ -84,11 +87,8 @@ export function useHeaderSetting() {
   }
   return {
     setHeaderSetting,
-
-    getShowDoc,
     getShowSearch,
     getHeaderTheme,
-    getUseLockPage,
     getShowFullScreen,
     getShowNotice,
     getShowBread,

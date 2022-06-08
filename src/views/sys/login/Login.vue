@@ -13,10 +13,10 @@
           <div class="my-auto">
             <img :alt="title" src="../../../assets/svg/login-box-bg.svg" class="w-1/2 -mt-16 -enter-x" />
             <div class="mt-10 font-medium text-white -enter-x">
-              <span class="inline-block mt-4 text-3xl">开箱即用的中后台管理系统</span>
+              <span class="inline-block mt-4 text-3xl">中后台管理系统</span>
             </div>
             <div class="mt-5 font-normal text-white text-md dark:text-gray-500 -enter-x">
-              输入您的个人详细信息开始使用！
+              ****
             </div>
           </div>
         </div>
@@ -24,9 +24,6 @@
           <div :class="`${prefixCls}-form`"
             class="relative w-full px-5 py-8 mx-auto my-auto rounded-md shadow-md xl:ml-16 xl:bg-transparent sm:px-8 xl:p-4 xl:shadow-none sm:w-3/4 lg:w-2/4 xl:w-auto enter-x">
             <LoginForm />
-            <ForgetPasswordForm />
-            <RegisterForm />
-            <MobileForm />
           </div>
         </div>
       </div>
@@ -36,10 +33,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { AppLogo } from '/@/components/Application';
+import { AppDarkModeToggle } from '/@/components/Application';
 import LoginForm from './LoginForm.vue';
-import ForgetPasswordForm from './ForgetPasswordForm.vue';
-import RegisterForm from './RegisterForm.vue';
-import MobileForm from './MobileForm.vue';
 import { useGlobSetting } from '/@/hooks/setting';
 import { useDesign } from '/@/hooks/web/useDesign';
 

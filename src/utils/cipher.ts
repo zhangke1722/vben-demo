@@ -1,3 +1,10 @@
+/*
+ * @Author: Zack
+ * @Date: 2022-06-02 11:05:06
+ * @LastEditors: Zack
+ * @LastEditTime: 2022-06-08 17:52:51
+ * @Description: file content
+ */
 import { encrypt, decrypt } from 'crypto-js/aes';
 import { parse } from 'crypto-js/enc-utf8';
 import pkcs7 from 'crypto-js/pad-pkcs7';
